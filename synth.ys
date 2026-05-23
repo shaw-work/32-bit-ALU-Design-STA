@@ -1,0 +1,17 @@
+read_liberty -lib lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog rtl/alu_32bit.v
+
+hierarchy -top alu_32bit
+
+synth -top alu_32bit
+
+dfflibmap -liberty lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+clean
+
+write_verilog -noattr synth/alu_32bit_netlist.v
+
+stat
